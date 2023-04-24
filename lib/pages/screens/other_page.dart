@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled4/pages/screens/other_page3.dart';
 
 class OtherPage extends StatelessWidget {
   const OtherPage({Key? key}) : super(key: key);
@@ -6,7 +7,7 @@ class OtherPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'მართვის მოწმობის გამოცდის ტესტი ',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -23,21 +24,55 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  var score = 0;
+
   final questions = [
-    "რამდენი წლიდანაა შესაძლებელი მართვის მოწმობის აღება?", "შუქნიშნის რომელ ფერზეა ნებადართული მოძრაობის დაწყება?", "სად არის შესაძლებელი მანქნის გაჩერება?",
-
+    "რამდენი წლიდანაა შესაძლებელი მართვის მოწმობის აღება?",
+    "შუქნიშნის რომელ ფერზეა ნებადართული მოძრაობის დაწყება?",
+    "რამდენი კმ/სთ შეიძლება მოძრაობა ქალაქში",
+    "რამდენი კმ/სთ შეიძლება მოძრაობა ავტობანზე ",
+    "სად არის დაშვებული მანქნის დაპარკინგება ქალაქში?",
   ];
 
-  final answersA = ["15 წლიდან ", " მწვანეზე ", "ჩვენთვის მოსახერხებელ ადგილას"];
-
-  final answersB = ["14 წლიდან", "წითელზე", "სპეციალურ ზონაში"
+  final answersA = [
+    "14 წლიდან",
+    "წითელზე",
+    "100 კმ/სთ",
+    "120 კმ/სთ",
+    "გზაის სავალ ნაწილზე",
   ];
 
-  final answersC = ["18 წლიდან", "ყვითელზე", "გზის სავალ ნაწილზე"];
+  final answersB = [
+    "18 წლიდან",
+    "ყვითელზე",
+    "50 კმ/სთ",
+    "180 კმ/სთ",
+    "ჩვენთვის მოსახერხებელ ადგილას",
+  ];
 
-  final answersD = ["16 წლიდან ", "ყველა ზემოთ ჩამოთვლილი"];
+  final answersC = [
+    "16 წლიდან ",
+    "ყველა ზემოთ ჩამოთვლილი",
+    "90 კმ/სთ",
+    "110 კმ/სთ",
+    "სპეციალურ ზონაში",
+  ];
 
-  final correctAnswers = ["18 წლიდან", " მწვანეზე ", "სპეციალურ ზონაში"];
+  final answersD = [
+    "18 წლიდან",
+    " მწვანეზე ",
+    "60 კმ/სთ",
+    "160 კმ/სთ",
+    "ტროტუარზე",
+  ];
+
+  final correctAnswers = [
+    "18 წლიდან",
+    " მწვანეზე ",
+    "60 კმ/სთ",
+    "110 კმ/სთ",
+    "სპეციალურ ზონაში",
+  ];
 
   var index = 0;
 
@@ -48,17 +83,38 @@ class _QuizState extends State<Quiz> {
 
   var nextQuestionVisible = true;
 
+  var alreadyAnswered = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quizzz'),
-      ),
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 48),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+        appBar: AppBar(
+          title: const Text('Quizzz'),
+        ),
+        body: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 48),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    index = 0;
+                    buttonAColor = Colors.blue;
+                    buttonBColor = Colors.blue;
+                    buttonCColor = Colors.blue;
+                    buttonDColor = Colors.blue;
+                    score = 0;
+                    alreadyAnswered = false;
+                    nextQuestionVisible = true;
+                  });
+                },
+                child: const Text("თავიდან დაწყება")),
+            Text(
+              "Score: $score",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 22,
+              ),
+            ),
             Text(questions[index]),
             const SizedBox(
               height: 32,
@@ -68,50 +124,84 @@ class _QuizState extends State<Quiz> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    if (correctAnswers[index] == answersA[index]) {
+                    if (true) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) {
+                                return const other_page3();
+                              }));
+                      if (!alreadyAnswered) {
+                        if (correctAnswers[index] == answersA[index]) {
+                          setState(() {
+                            score++;
+                            buttonAColor = Colors.green;
+                          });
+                        } else {
+                          setState(() {
+                            buttonAColor = Colors.red;
+                          });
+                        }
+                      }
                       setState(() {
-                        buttonAColor = Colors.green;
+                        alreadyAnswered = true;
                       });
-                    } else {
-                      setState(() {
-                        buttonAColor = Colors.red;
-                      });
-                    }
-                  },
-                  child: Container(
+                    };
+
+                    child: Container(
+                    decoration: BoxDecoration(
                     color: buttonAColor,
-                    width: 120,
-                    height: 40,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                    width: 150,
+                    height: 60,
                     alignment: Alignment.center,
                     child: Text(
-                      answersA[index],
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                    answersA[index],
+                    style: const TextStyle(color: Colors.white)
+                    ,
+                    )
+                    ,
+                    );
+                  }),
                 GestureDetector(
                   onTap: () {
-                    if (correctAnswers[index] == answersB[index]) {
+                    if (true) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) {
+                                return const other_page3();
+                              }));
+                      if (!alreadyAnswered) {
+                        if (correctAnswers[index] == answersB[index]) {
+                          setState(() {
+                            score++;
+                            buttonBColor = Colors.green;
+                          });
+                        } else {
+                          setState(() {
+                            buttonBColor = Colors.red;
+                          });
+                        }
+                      }
                       setState(() {
-                        buttonBColor = Colors.green;
-                      });
-                    } else {
-                      setState(() {
-                        buttonBColor = Colors.red;
+                        alreadyAnswered = true;
                       });
                     }
-                  },
-                  child: Container(
+                    ;
+                    child: Container(
+                    decoration: BoxDecoration(
                     color: buttonBColor,
-                    width: 120,
-                    height: 40,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                    width: 150,
+                    height: 60,
                     alignment: Alignment.center,
                     child: Text(
-                      answersB[index],
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                    answersB[index],
+                    style: const TextStyle(color: Colors.white)
+                    ,
+                    )
+                    ,
+                    );
+                  })
               ],
             ),
             const SizedBox(
@@ -122,43 +212,75 @@ class _QuizState extends State<Quiz> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    if (correctAnswers[index] == answersC[index]) {
+                    if (true) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) {
+                                return const other_page3();
+                              }));
+                      if (!alreadyAnswered) {
+                        if (correctAnswers[index] == answersC[index]) {
+                          setState(() {
+                            score++;
+                            buttonCColor = Colors.green;
+                          });
+                        } else {
+                          setState(() {
+                            buttonCColor = Colors.red;
+                          });
+                        }
+                      }
                       setState(() {
-                        buttonCColor = Colors.green;
+                        alreadyAnswered = true;
                       });
-                    } else {
-                      setState(() {
-                        buttonCColor = Colors.red;
-                      });
-                    }
-                  },
-                  child: Container(
-                    color: buttonCColor,
-                    width: 120,
-                    height: 40,
+                    };
+
+                    child: Container(
+                    decoration: BoxDecoration(
+                    color: buttonCColor, borderRadius: BorderRadius.all(Radius.circular(20))
+                    ),
+                    width: 150,
+                    height: 60,
                     alignment: Alignment.center,
                     child: Text(
-                      answersC[index],
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ),
+                    answersC[index],
+                    style: const TextStyle(color: Colors.white)
+                    ,
+                    )
+                    ,
+                    );
+                  }),
                 GestureDetector(
-                  onTap: () {
-                    if (correctAnswers[index] == answersD[index]) {
-                      setState(() {
-                        buttonDColor = Colors.green;
-                      });
-                    } else {
-                      setState(() {
-                        buttonDColor = Colors.red;
-                      });
+                  onTap: () { if (true) {
+    Navigator.of(context).push(
+    MaterialPageRoute(
+    builder: (context) {
+    return const other_page3();}));
+
+    }
+
+                    if (!alreadyAnswered) {
+                      if (correctAnswers[index] == answersD[index]) {
+                        setState(() {
+                          score++;
+                          buttonDColor = Colors.green;
+                        });
+                      } else {
+                        setState(() {
+                          buttonDColor = Colors.red;
+                        });
+                      }
                     }
+                    setState(() {
+                      alreadyAnswered = true;
+                    });
                   },
                   child: Container(
-                    color: buttonDColor,
-                    width: 120,
-                    height: 40,
+                    decoration: BoxDecoration(
+                      color: buttonDColor,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                    width: 150,
+                    height: 60,
                     alignment: Alignment.center,
                     child: Text(
                       answersD[index],
@@ -177,23 +299,26 @@ class _QuizState extends State<Quiz> {
                   onPressed: () {
                     if (questions.length > index + 1) {
                       setState(() {
-                        index++;
-                        buttonAColor = Colors.blue;
-                        buttonBColor = Colors.blue;
-                        buttonCColor = Colors.blue;
-                        buttonDColor = Colors.blue;
-                      });
-                    } else {
-                      setState(() {
-                        nextQuestionVisible = false;
+                        index++; // 0 -> 1
                       });
                     }
+
+                    if (index == questions.length - 1) {
+                      {
+                        setState(() {
+                          nextQuestionVisible = false;
+                        });
+                      }
+                    }
+                    buttonAColor = Colors.blue;
+                    buttonBColor = Colors.blue;
+                    buttonCColor = Colors.blue;
+                    buttonDColor = Colors.blue;
+                    alreadyAnswered = false;
                   },
                   child: const Text('Next Question')),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          ]),
+        ));
   }
 }

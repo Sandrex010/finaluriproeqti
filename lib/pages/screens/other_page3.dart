@@ -5,10 +5,32 @@ class other_page3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-       appBar: AppBar(
-
-       ),
+    return Scaffold(
+      body: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Container(
+          margin: EdgeInsets.only(
+             top: 750, left: 250,
+          ),
+          child: Text(
+            " გილოცავთ! ",
+            style: TextStyle(
+              color: Colors.green,
+              fontSize: 50,
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+                width: 350,
+                margin: EdgeInsets.only(bottom: 250, right: 2500, ),
+                child: Image(
+                    image: NetworkImage(
+                        ""))),
+          ],
+        )
+      ]),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled4/pages/screens/other_page3.dart';
 
 import 'other_page.dart';
 
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
     onPressed: () {   Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) {
-          return const OtherPage();
+          return const  OtherPage();
         },
       ),
     );

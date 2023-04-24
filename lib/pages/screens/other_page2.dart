@@ -10,8 +10,7 @@ class other_page2 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('არჩევა'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.home))
-         ],
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.home))],
         centerTitle: true,
       ),
       body: Row(
@@ -19,28 +18,27 @@ class other_page2 extends StatelessWidget {
         children: [
           Column(
             children: [
-
-              Container(  margin: EdgeInsets.only(top: 75),
+              Container(
+                margin: EdgeInsets.only(top: 75),
                 decoration: BoxDecoration(
                     color: Colors.amber,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
                 width: 300,
                 height: 50,
                 child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return  const  HomePage();
-                          },
-                        ),
-                      );
-                    },
-                    child: const Text("B/B1 მსუბუქი ავტომობილი"),
-
-
-              ),
-              )],
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const HomePage();
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text("B/B1 მსუბუქი ავტომობილი"),
+                ),
+              )
+            ],
           ),
         ],
       ),
