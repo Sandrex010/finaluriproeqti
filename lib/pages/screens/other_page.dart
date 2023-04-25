@@ -59,7 +59,7 @@ class _QuizState extends State<Quiz> {
   ];
 
   final answersD = [
-    "18 წლიდან",
+    "15 წლიდან",
     " მწვანეზე ",
     "60 კმ/სთ",
     "160 კმ/სთ",
@@ -89,7 +89,7 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Quizzz'),
+          title: const Text('გამოცდა'),
         ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 48),
@@ -110,7 +110,7 @@ class _QuizState extends State<Quiz> {
                 child: const Text("თავიდან დაწყება")),
             Text(
               "Score: $score",
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.red,
                 fontSize: 22,
               ),
@@ -123,13 +123,14 @@ class _QuizState extends State<Quiz> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
-                  onTap: () {
-                    if (true) {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) {
-                                return const other_page3();
-                              }));
+                    onTap: () {
+                      if (index == questions.length - 1) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return const OtherPage3();
+                        }));
+                      }
+
                       if (!alreadyAnswered) {
                         if (correctAnswers[index] == answersA[index]) {
                           setState(() {
@@ -145,63 +146,56 @@ class _QuizState extends State<Quiz> {
                       setState(() {
                         alreadyAnswered = true;
                       });
-                    };
-
+                    },
                     child: Container(
-                    decoration: BoxDecoration(
-                    color: buttonAColor,
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                    width: 150,
-                    height: 60,
-                    alignment: Alignment.center,
-                    child: Text(
-                    answersA[index],
-                    style: const TextStyle(color: Colors.white)
-                    ,
-                    )
-                    ,
-                    );
-                  }),
+                      decoration: BoxDecoration(
+                          color: buttonAColor,
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
+                      width: 110,
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Text(
+                        answersA[index],
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    )),
                 GestureDetector(
-                  onTap: () {
-                    if (true) {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) {
-                                return const other_page3();
-                              }));
-                      if (!alreadyAnswered) {
-                        if (correctAnswers[index] == answersB[index]) {
-                          setState(() {
-                            score++;
-                            buttonBColor = Colors.green;
-                          });
-                        } else {
-                          setState(() {
-                            buttonBColor = Colors.red;
-                          });
+                    onTap: () {
+                      if (index == questions.length - 1) {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return const OtherPage3();
+                        })); }
+                        if (!alreadyAnswered) {
+                          if (correctAnswers[index] == answersB[index]) {
+                            setState(() {
+                              score++;
+                              buttonBColor = Colors.green;
+                            });
+                          } else {
+                            setState(() {
+                              buttonBColor = Colors.red;
+                            });
+                          }
                         }
-                      }
-                      setState(() {
-                        alreadyAnswered = true;
-                      });
-                    }
-                    ;
+                        setState(() {
+                          alreadyAnswered = true;
+                        });
+
+                    },
                     child: Container(
-                    decoration: BoxDecoration(
-                    color: buttonBColor,
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                    width: 150,
-                    height: 60,
-                    alignment: Alignment.center,
-                    child: Text(
-                    answersB[index],
-                    style: const TextStyle(color: Colors.white)
-                    ,
-                    )
-                    ,
-                    );
-                  })
+                      decoration: BoxDecoration(
+                          color: buttonBColor,
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                      width: 110,
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: Text(
+                        answersB[index],
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ))
               ],
             ),
             const SizedBox(
@@ -212,52 +206,51 @@ class _QuizState extends State<Quiz> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    if (true) {
+                    if (index == questions.length - 1) {
                       Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) {
-                                return const other_page3();
-                              }));
-                      if (!alreadyAnswered) {
-                        if (correctAnswers[index] == answersC[index]) {
-                          setState(() {
-                            score++;
-                            buttonCColor = Colors.green;
-                          });
-                        } else {
-                          setState(() {
-                            buttonCColor = Colors.red;
-                          });
-                        }
-                      }
-                      setState(() {
-                        alreadyAnswered = true;
-                      });
-                    };
+                        MaterialPageRoute(builder: (context) {
+                          return const OtherPage3();
+                        }),
+                      );
+                    }
 
-                    child: Container(
+                    if (!alreadyAnswered) {
+                      if (correctAnswers[index] == answersC[index]) {
+                        setState(() {
+                          score++;
+                          buttonCColor = Colors.green;
+                        });
+                      } else {
+                        setState(() {
+                          buttonCColor = Colors.red;
+                        });
+                      }
+                    }
+                    setState(() {
+                      alreadyAnswered = true;
+                    });
+                  },
+                  child: Container(
                     decoration: BoxDecoration(
-                    color: buttonCColor, borderRadius: BorderRadius.all(Radius.circular(20))
-                    ),
-                    width: 150,
-                    height: 60,
+                        color: buttonCColor,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    width: 110,
+                    height: 50,
                     alignment: Alignment.center,
                     child: Text(
-                    answersC[index],
-                    style: const TextStyle(color: Colors.white)
-                    ,
-                    )
-                    ,
-                    );
-                  }),
+                      answersC[index],
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
                 GestureDetector(
-                  onTap: () { if (true) {
-    Navigator.of(context).push(
-    MaterialPageRoute(
-    builder: (context) {
-    return const other_page3();}));
-
-    }
+                  onTap: () {
+                    if (index == questions.length - 1) {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (context) {
+                        return const OtherPage3();
+                      }));
+                    }
 
                     if (!alreadyAnswered) {
                       if (correctAnswers[index] == answersD[index]) {
@@ -277,10 +270,10 @@ class _QuizState extends State<Quiz> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: buttonDColor,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                    width: 150,
-                    height: 60,
+                        color: buttonDColor,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    width: 110,
+                    height: 50,
                     alignment: Alignment.center,
                     child: Text(
                       answersD[index],
