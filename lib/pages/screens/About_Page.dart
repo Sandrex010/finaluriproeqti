@@ -7,29 +7,22 @@ class About_Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('პროექტის ინფო'),
+        title: const Text('პროექტის შესახებ'),
       ),
-      body: Container( width: 70, height: 70, margin: EdgeInsets.only(top: 260, ),
-        child: Row(
-          children: [
-            Image(image: AssetImage("assets/images/logo.jpg")),
-
-
-
-            Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      "პროექტი მომზადდა USAID-ის სამოქალაქო განათლების პროგრამის ფარგლებში, პარტნიორი ორგანიზაცია ჯეოლაბის კურსის ფინალურ ეტაპზე. პროგრამა ხორციელდებPH international-ის მიერ,აშშ საერთაშორისო განვითარების სააგენტოს (USAID) დაფინანსებითა და საქართველოს განათლებისა და მეცნიერების სამინისტროს მხარდაჭერით.",
-                      style: TextStyle(fontSize: 5 , color: Colors.cyan),
-                    ),
-                  ],
-                ),
-              ],
+      body: Column(
+        children:  [
+          const Image(
+            image: AssetImage("assets/images/foto.png"),
+          ),
+          const SizedBox(height: 64,),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            child: const Text(
+              "პროექტი მომზადდა USAID-ის სამოქალაქო განათლების პროგრამის ფარგლებში, პარტნიორი ორგანიზაცია ჯეოლაბის კურსის ფინალურ ეტაპზე. პროგრამა ხორციელდებPH international-ის მიერ,აშშ საერთაშორისო განვითარების სააგენტოს (USAID) დაფინანსებითა და საქართველოს განათლებისა და მეცნიერების სამინისტროს მხარდაჭერით.",
+              style: TextStyle(fontSize: 16, color: Colors.cyan,),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
